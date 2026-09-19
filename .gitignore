@@ -1,0 +1,11 @@
+# nix build artifacts
+/result
+/result-*
+.direnv
+
+# python
+__pycache__/
+*.pyc
+
+# local test junk
+/tmp/
