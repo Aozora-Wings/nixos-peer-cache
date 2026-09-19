@@ -15,7 +15,8 @@
 #   # other nodes (client):
 #   services.peer-cache.enable = true;
 #   services.peer-cache.serverUrl = "https://peer-cache.qkzy.net";
-{ config, lib, pkgs, peer-cache-pkg, ... }:
+{ peer-cache-pkg }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.services.peer-cache;
   pkg = peer-cache-pkg;
