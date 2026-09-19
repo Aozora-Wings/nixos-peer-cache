@@ -91,7 +91,7 @@ in
       after = [ "network-online.target" ];
       wants = [ "network-online.target" ];
       serviceConfig = {
-        ExecStart = concatStringsSep " " ([
+        ExecStart = lib.concatStringsSep " " ([
           "${pkg}/bin/peer-cache-client"
           "--server-url ${cfg.serverUrl}"
           "--local-port ${toString cfg.localPort}"
