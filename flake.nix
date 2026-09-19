@@ -1,7 +1,6 @@
 {
-  description = "peer-cache：NixOS 节点间的 P2P binary cache（rendezvous + 透明 pull-through）";
+  description = "peer-cache: NixOS P2P binary cache (rendezvous + pull-through client)";
 
-  # 与 nixos-config 一致：nixpkgs 走南大镜像，避免境内 GitHub 直连不稳。
   inputs.nixpkgs.url =
     "git+https://mirrors.nju.edu.cn/git/nixpkgs.git?ref=nixos-unstable&shallow=1";
 
@@ -9,9 +8,10 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+      peer-cache-pkg = pkgs.callPackage ./pkgs { };
     in {
-      packages.${system}.peer-cache = pkgs.callPackage ./pkgs { };
+      packages.${system}.peer-cache = peer-cache-pkg;
 
-      nixosModules.default = import ./modules/peer-cache.nix;
+      nixosModules.default = import ./modules/peer-cache.nix { inherit peer-cache-pkg; };
     };
 }
