@@ -12,6 +12,6 @@
     in {
       packages.${system}.peer-cache = pkgs.callPackage ./pkgs { };
 
-      nixosModules.default = import ./modules/peer-cache.nix { inherit pkgs; };
+      nixosModules.default = import ./modules/peer-cache.nix;
     };
 }

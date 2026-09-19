@@ -16,8 +16,7 @@
 #   # 其它节点（本机 / WSL / 别的服务器）：
 #   services.peer-cache.enable = true;
 #   services.peer-cache.serverUrl = "http://china-server.qkzy.net:8250";
-{ pkgs }:
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.services.peer-cache;
   pkg = pkgs.callPackage ../../pkgs { };
