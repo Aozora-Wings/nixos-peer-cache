@@ -19,7 +19,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.services.peer-cache;
-  pkg = pkgs.callPackage ../../pkgs { };
+  pkg = import ../../pkgs { inherit pkgs; };
 in
 {
   options.services.peer-cache = {
