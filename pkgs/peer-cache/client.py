@@ -37,6 +37,10 @@ class PeerCache:
 
     def local_path(self, h):
         hits = glob.glob(os.path.join(STORE, h + "-*"))
+        hits = [p for p in hits if not p.endswith(".lock")]
+        for p in hits:
+            if not p.endswith(".drv"):
+                return p
         return hits[0] if hits else None
 
     def ensure_local_nar(self, h, path):
