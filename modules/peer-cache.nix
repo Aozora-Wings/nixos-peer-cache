@@ -82,8 +82,8 @@ in
       };
     };
 
-    # ---------- P2P cache client (always runs when enable=true, even on rendezvous nodes) ----------
-    systemd.services.peer-cache = {
+    # ---------- P2P cache client (skipped on rendezvous nodes without v6) ----------
+    systemd.services.peer-cache = lib.mkIf (!cfg.serverMode) {
       description = "peer-cache P2P binary cache";
       wantedBy = [ "multi-user.target" ];
       after = [ "network-online.target" ];
@@ -105,7 +105,7 @@ in
       };
     };
 
-    nix.settings = {
+    nix.settings = lib.mkIf (!cfg.serverMode) {
       "extra-substituters" = [ "http://127.0.0.1:${toString cfg.localPort}/" ];
       "require-sigs" = false;
     };
