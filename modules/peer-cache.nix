@@ -106,7 +106,7 @@ in
     };
 
     nix.settings = lib.mkIf (!cfg.serverMode) {
-      extraSubstituters = [ "http://127.0.0.1:${toString cfg.localPort}/" ];
+      "extra-substituters" = [ "http://127.0.0.1:${toString cfg.localPort}/" ];
       "require-sigs" = false;
     };
   };
